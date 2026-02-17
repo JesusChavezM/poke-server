@@ -16,6 +16,6 @@ export const getPokemonByName = asyncHandler(async (req: Request, res: Response)
     });
   }
 
-  const result = await fetchPokemonByName(name);
+  const result = await fetchPokemonByName(name, { includeEvolutions: true });
   return sendResult(res, result);
 });
