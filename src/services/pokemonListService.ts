@@ -1,6 +1,6 @@
-import { getFromPokeApi } from 'src/lib/apiClient';
-import type { ApiResult } from 'src/types/api';
-import type { PaginatedList, PokemonListItem } from 'src/types/pokemon';
+import { getFromPokeApi } from '../lib/apiClient';
+import type { ApiResult } from '../types/api';
+import type { PaginatedList, PokemonListItem } from '../types/pokemon';
 
 type PokemonTypeEntry = { slot?: number; type?: { name?: string; url?: string } };
 type PokemonDetailData = {

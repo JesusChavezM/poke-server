@@ -1,5 +1,5 @@
-import { getFromPokeApi } from 'src/lib/apiClient';
-import type { ApiResult } from 'src/types/api';
+import { getFromPokeApi } from '../lib/apiClient';
+import type { ApiResult } from '../types/api';
 
 export type SimplifiedPokemonEvolutions = {
   id: number | null;

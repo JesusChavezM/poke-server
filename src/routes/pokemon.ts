@@ -1,5 +1,5 @@
-import { getPokemonByName } from '@/api/getPokemonByname';
-import { getPokemonList } from '@/api/getPokemonList';
+import { getPokemonByName } from '../api/getPokemonByname';
+import { getPokemonList } from '../api/getPokemonList';
 import { Router } from 'express';
 
 const router = Router();

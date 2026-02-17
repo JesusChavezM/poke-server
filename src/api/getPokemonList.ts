@@ -1,6 +1,6 @@
-import { sendResult } from 'src/utils/apiResponse';
-import { fetchPokemonList } from 'src/services/pokemonListService';
-import { asyncHandler } from '@/utils/asyncHandler';
+import { sendResult } from '../utils/apiResponse';
+import { fetchPokemonList } from '../services/pokemonListService';
+import { asyncHandler } from '../utils/asyncHandler';
 import type { Request, Response } from 'express';
 
 export const getPokemonList = asyncHandler(async (req: Request, res: Response) => {

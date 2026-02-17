@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import pokemonRouter from '@/routes/pokemon';
-import { errorHandler } from '@/utils/errorHandler';
+import pokemonRouter from './routes/pokemon';
+import { errorHandler } from './utils/errorHandler';
 
 export function createApp() {
   const app = express();

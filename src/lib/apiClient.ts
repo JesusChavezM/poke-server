@@ -1,11 +1,7 @@
-import type { ApiResult } from 'src/types/api';
+import type { ApiResult } from '../types/api';
 const BASE = process.env.POKEAPI_BASE_URL || 'https://pokeapi.co/api/v2';
 
-async function fetchJson<T>(
-  input: RequestInfo,
-  init?: RequestInit,
-  timeout = 8000
-): Promise<ApiResult<T>> {
+async function fetchJson<T>(input: RequestInfo, init?: RequestInit, timeout = 8000): Promise<ApiResult<T>> {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
   try {

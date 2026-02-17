@@ -1,7 +1,7 @@
-import { fetchPokemonByName } from '@/services/pokemonService';
+import { fetchPokemonByName } from '../services/pokemonService';
 import type { Request, Response } from 'express';
-import { asyncHandler } from 'src/utils/asyncHandler';
-import { sendResult } from 'src/utils/apiResponse';
+import { asyncHandler } from '../utils/asyncHandler';
+import { sendResult } from '../utils/apiResponse';
 
 export const getPokemonByName = asyncHandler(async (req: Request, res: Response) => {
   const name = String(req.params.name || '')

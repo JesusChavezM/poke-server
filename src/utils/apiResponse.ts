@@ -1,5 +1,5 @@
 import type { Response } from 'express';
-import type { ApiResult } from 'src/types/api';
+import type { ApiResult } from '../types/api';
 
 export function sendResult<T>(res: Response, result: ApiResult<T>) {
   return res.status(result.status).json({
