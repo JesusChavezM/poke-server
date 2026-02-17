@@ -3,6 +3,8 @@ export type PokemonListItem = {
   name: string;
   url: string;
   id?: number;
+  artwork?: string;
+  primaryType?: string;
 };
 
 export type PaginatedList<T> = {
