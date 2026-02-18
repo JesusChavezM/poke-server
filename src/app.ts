@@ -13,6 +13,10 @@ export function createApp() {
   const allowedOrigins = [FRONTEND_ORIGIN, 'http://localhost:9000'].filter(Boolean);
   app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    res.setHeader(
+      'Content-Security-Policy',
+      "default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com; connect-src 'self' https://oauth2.googleapis.com https://poke-server-lake.vercel.app; img-src 'self' data: https://raw.githubusercontent.com; style-src 'self' 'unsafe-inline'; frame-src https://accounts.google.com; frame-ancestors 'self';"
+    );
     next();
   });
   app.use(
