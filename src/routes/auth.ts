@@ -7,14 +7,28 @@ const router = Router();
 
 router.post('/google', async (req, res) => {
   try {
-    const { idToken } = req.body;
+    const { idToken } = req.body || {};
+
+    if (!idToken || typeof idToken !== 'string') {
+      return res.status(400).json({ error: 'Missing idToken in body' });
+    }
+
+    // --- opcional: log temporal para depuración (muestra alg y kid) ---
+    try {
+      const [hdr] = idToken.split('.');
+      const headerJson = JSON.parse(Buffer.from(hdr, 'base64').toString('utf8'));
+      console.info('Incoming idToken header:', headerJson); // RS256 esperado
+    } catch (e) {
+      console.warn('Could not parse idToken header', e);
+    }
 
     const payload = await verifyGoogleToken(idToken);
 
     if (!payload?.sub) {
-      return res.status(401).json({ error: 'Invalid token' });
+      return res.status(401).json({ error: 'Invalid token payload' });
     }
 
+    // Busca por googleId (sub)
     let user = await User.findOne({ googleId: payload.sub });
 
     if (!user) {
@@ -32,7 +46,7 @@ router.post('/google', async (req, res) => {
 
     const sessionToken = createSession(user.id);
 
-    res.json({
+    return res.json({
       sessionToken,
       user: {
         id: user.id,
@@ -42,8 +56,11 @@ router.post('/google', async (req, res) => {
       },
     });
   } catch (err) {
-    console.error(err);
-    res.status(401).json({ error: 'Auth failed' });
+    // Diferencia entre errores esperados y errores de infra
+    console.error('POST /api/auth/google error:', err);
+
+    // fallback
+    return res.status(500).json({ error: 'Auth failed' });
   }
 });
 
